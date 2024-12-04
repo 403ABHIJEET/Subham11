@@ -19,7 +19,7 @@ const formSchema = z.object({
 
 const Page = () => {
 
-    const [isSubmitting, setIsSubmitting] = useState()
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const [image, setImage] = useState('')
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -33,7 +33,7 @@ const Page = () => {
     })
 
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
-        
+        setIsSubmitting(true)
     };
 
   return (
@@ -46,7 +46,7 @@ const Page = () => {
                         control={form.control}
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Username or Email</FormLabel>
+                                <FormLabel>Course Name</FormLabel>
                                 <Input {...field} type='text' />
                                 <FormMessage />
                             </FormItem>
@@ -57,7 +57,7 @@ const Page = () => {
                         control={form.control}
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Username or Email</FormLabel>
+                                <FormLabel>Course Link</FormLabel>
                                 <Input {...field} type='text' />
                                 <FormMessage />
                             </FormItem>
