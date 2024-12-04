@@ -20,6 +20,7 @@ const Navbar = () => {
       <div>
         <h1 className="text-4xl">MyApp</h1>
       </div>
+      
       <div className="">
         {
           initialLoading && status == "loading" ? (
@@ -31,6 +32,7 @@ const Navbar = () => {
               </div>
             ) : (
               <div className="flex gap-3 justify-center items-center">
+                <Link href="/dashboard" >Dahsboard</Link>
                 <Button onClick={() => signOut()} variant="destructive">
                   Logout
                 </Button>
