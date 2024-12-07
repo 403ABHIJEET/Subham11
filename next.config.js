@@ -1,5 +1,5 @@
 module.exports = {
-    images: {
-      domains: ['utfs.io'], // Add your external domain(s) here
-    },
-  };
+  images: {
+    domains: ['res.cloudinary.com'], // Add the Cloudinary domain
+  },
+};

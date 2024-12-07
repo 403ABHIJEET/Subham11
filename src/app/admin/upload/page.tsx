@@ -10,6 +10,9 @@ import { Loader2 } from 'lucide-react';
 import Image from 'next/image'
 import { UploadDropzone } from '@/lib/uploadthing'
 import { UploadButton } from '@uploadthing/react'
+import { log } from 'console'
+import { CldUploadButton, CldUploadWidget } from 'next-cloudinary';
+import GenerateThumbnail from '@/components/GenerateImage'
 
 const formSchema = z.object({
     courseName: z.string().min(2).max(50),
@@ -36,7 +39,7 @@ const Page = () => {
 
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
         setIsSubmitting(true)
-        form.setValue('courseImage', image)
+        data.courseImage = image
         try {
             const response = await fetch('/api/course', {
                 method: "POST",
@@ -99,7 +102,7 @@ const Page = () => {
                                         <FormItem className=''>
                                             <Input {...field} type='hidden' value={image} />
                                             <div className='flex justify-center items-center flex-col'>
-                                            <FormLabel className='text-center p-6' >Upload Template</FormLabel>
+                                                <FormLabel className='text-center p-6' >Upload Template</FormLabel>
                                                 {
                                                     image ? (
                                                         <div>
@@ -112,25 +115,10 @@ const Page = () => {
                                                 <div className='flex items-center mt-4'>
                                                     {
                                                         !image ? (
-                                                            <UploadDropzone endpoint='imageUploader' appearance={{
-                                                                button:
-                                                                    "w-60 bg-slate-500",
-                                                                container: "border-none",
-                                                                uploadIcon: "hidden",
-                                                                label: "hidden",
-                                                                allowedContent:
-                                                                    "hidden flex h-8 flex-col items-center justify-center px-2 text-white",
-                                                            }}
-                                                                onClientUploadComplete={(res: any) => {
-                                                                    setImage(res[0].url)
-                                                                }}
-                                                                onUploadError={() => {
-                                                                    alert("Error uploading")
-                                                                }}
-                                                            />
+                                                            <GenerateThumbnail image={image} setImage={setImage} />
                                                         ) : (
                                                             <button className='w-60 bg-red-500 hover:bg-red-700 rounded text-white h-9'
-                                                                onClick={() => setImage('')} 
+                                                                onClick={() => setImage('')}
                                                             >
                                                                 Remove Image
                                                             </button>

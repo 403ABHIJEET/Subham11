@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card"
 import Image from "next/image";
 import { Post } from "@prisma/client";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Page = () => {
 
@@ -24,7 +25,6 @@ const Page = () => {
             setLoading(true);
             const response = await fetch("/api/course");
             const data = await response.json();
-            console.log(data)
             setPosts(data.data);
         } catch (error) {
             console.error(error);
@@ -33,7 +33,7 @@ const Page = () => {
         }
     };
 
-    useEffect(() =>{
+    useEffect(() => {
         fetchPosts()
     }, [setPosts])
 
@@ -51,29 +51,38 @@ const Page = () => {
 
     return (
         <div className="m-10 grid grid-cols-4 gap-4">
-            {
-                posts.map((post: any, index: number) => {
-                    return (
-                        <Card className="w-[350px]" key={index}>
-                            <CardHeader>
-                                <CardTitle className="text-center" >{post.name}</CardTitle>
-                            </CardHeader>
-                            <CardContent className="flex justify-center items-center">
-                                <Image src={post.image} width={100} height={100} alt="img" />
-                            </CardContent>
-                            <CardFooter className="block">
-                                <CardDescription>
-                                    {post.description}
-                                </CardDescription>
-                                <div className="flex justify-evenly py-4">
-                                    <Button>Open</Button>
-                                    <Button onClick={() => handleDelete(post.id)} className="bg-red-500 hover:bg-red-700" >Delete</Button>
-                                </div>
-                            </CardFooter>
-                        </Card>
-                    )
-                })
-            }
+            <AnimatePresence mode="wait">
+                {
+                    posts.map((post: any, index: number) => {
+                        return (
+                            <motion.div key={index}
+                                initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+                                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                                transition={{ duration: 0.2, delay: index * 0.05 }}
+                            >
+                                <Card className="w-[350px]" >
+                                    <CardHeader>
+                                        <CardTitle className="text-center" >{post.name}</CardTitle>
+                                    </CardHeader>
+                                    <CardContent className="flex justify-center items-center">
+                                        <Image src={post.image} width={100} height={100} alt="img" />
+                                    </CardContent>
+                                    <CardFooter className="block">
+                                        <p>{post.url}</p>
+                                        <CardDescription>
+                                            {post.description}
+                                        </CardDescription>
+                                        <div className="flex justify-evenly py-4">
+                                            <Button>Open</Button>
+                                            <Button onClick={() => handleDelete(post.id)} className="bg-red-500 hover:bg-red-700" >Delete</Button>
+                                        </div>
+                                    </CardFooter>
+                                </Card>
+                            </motion.div>
+                        )
+                    })
+                }
+            </AnimatePresence>
         </div>
     )
 };
