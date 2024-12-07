@@ -37,7 +37,7 @@ const Page = () => {
         fetchPosts()
     }, [setPosts])
 
-    const handleDelete = async (id: any) => {
+    const handleDelete = async (id: string) => {
         const newPosts = posts.filter((post) => post.id !== id)
         setPosts(newPosts)
         await fetch(`/api/course?postId=${id}`, {
@@ -53,7 +53,7 @@ const Page = () => {
         <div className="m-10 grid grid-cols-4 gap-4">
             <AnimatePresence mode="wait">
                 {
-                    posts.map((post: any, index: number) => {
+                    posts.map((post, index: number) => {
                         return (
                             <motion.div key={index}
                                 initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}

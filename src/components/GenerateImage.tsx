@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Input } from "./ui/input";
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
@@ -6,12 +6,10 @@ import { Dispatch, SetStateAction } from "react";
 
 export interface GenerateThumbnailProps {
     setImage: Dispatch<SetStateAction<string>>;
-    image: string;
 }
 
 const GenerateThumbnail = ({
     setImage,
-    image,
 }: GenerateThumbnailProps) => {
     //const [isImageLoading, setIsImageLoading] = useState(false);
 

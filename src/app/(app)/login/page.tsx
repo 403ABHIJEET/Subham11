@@ -29,7 +29,7 @@ const Page = () => {
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
 
         try {
-            const response = await fetch('/api/course', {
+            await fetch('/api/course', {
                 method: "POST",
                 body: JSON.stringify(data),
             })

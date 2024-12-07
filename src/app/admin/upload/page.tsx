@@ -37,7 +37,7 @@ const Page = () => {
         setIsSubmitting(true)
         data.courseImage = image
         try {
-            const response = await fetch('/api/course', {
+            await fetch('/api/course', {
                 method: "POST",
                 body: JSON.stringify(data),
             })
@@ -110,7 +110,7 @@ const Page = () => {
                                                 <div className='flex items-center mt-4'>
                                                     {
                                                         !image ? (
-                                                            <GenerateThumbnail image={image} setImage={setImage} />
+                                                            <GenerateThumbnail setImage={setImage} />
                                                         ) : (
                                                             <button className='w-60 bg-red-500 hover:bg-red-700 rounded text-white h-9'
                                                                 onClick={() => setImage('')}

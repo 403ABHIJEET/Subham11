@@ -50,9 +50,12 @@ export async function DELETE(request: Request) {
     }
 
     const { searchParams } = new URL(request.url);
-    const postId = searchParams.get('postId')
+    const postId: string = searchParams.get('postId') ?? ""
+
+    
 
     try {
+        
         await prisma.post.delete({
             where: {
                 id: postId
@@ -60,6 +63,7 @@ export async function DELETE(request: Request) {
         })
         return NextResponse.json({messge: "success" }, {status: 200})
     } catch (error) {
+        console.log(error)
         return NextResponse.json({message: "error"}, {status: 400})
     }
 }
