@@ -8,10 +8,6 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react';
 import Image from 'next/image'
-import { UploadDropzone } from '@/lib/uploadthing'
-import { UploadButton } from '@uploadthing/react'
-import { log } from 'console'
-import { CldUploadButton, CldUploadWidget } from 'next-cloudinary';
 import GenerateThumbnail from '@/components/GenerateImage'
 
 const formSchema = z.object({
@@ -45,7 +41,6 @@ const Page = () => {
                 method: "POST",
                 body: JSON.stringify(data),
             })
-            const result = await response.json()
         } catch (error) {
             console.log(error)
         } finally {

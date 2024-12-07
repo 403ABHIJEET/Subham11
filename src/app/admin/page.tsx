@@ -18,18 +18,18 @@ const Page = () => {
 
     const { data: token } = useSession()
     const [posts, setPosts] = useState<Post[]>([])
-    const [loading, setLoading] = useState<boolean>(false)
+    //const [loading, setLoading] = useState<boolean>(false)
 
     const fetchPosts = async () => {
         try {
-            setLoading(true);
+            //setLoading(true);
             const response = await fetch("/api/course");
             const data = await response.json();
             setPosts(data.data);
         } catch (error) {
             console.error(error);
         } finally {
-            setLoading(false);
+            //setLoading(false);
         }
     };
 

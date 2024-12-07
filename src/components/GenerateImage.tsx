@@ -13,7 +13,7 @@ const GenerateThumbnail = ({
     setImage,
     image,
 }: GenerateThumbnailProps) => {
-    const [isImageLoading, setIsImageLoading] = useState(false);
+    //const [isImageLoading, setIsImageLoading] = useState(false);
 
     const imageRef = useRef<HTMLInputElement>(null);
 
@@ -26,7 +26,7 @@ const GenerateThumbnail = ({
             const formData = new FormData();
             formData.append("file", file);
 
-            setIsImageLoading(true);
+            //setIsImageLoading(true);
 
             const response = await axios.post("/api/upload-image", formData, {
                 headers: {
@@ -44,7 +44,7 @@ const GenerateThumbnail = ({
             console.error("Error uploading image:", error);
 
         } finally {
-            setIsImageLoading(false);
+            //setIsImageLoading(false);
         }
     };
 

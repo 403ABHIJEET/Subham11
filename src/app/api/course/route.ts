@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     }
     try {
         
-        const data: any = await request.json();
+        const data = await request.json();
 
         await prisma.post.create({
             data: {
@@ -35,6 +35,7 @@ export async function GET() {
         const response = await prisma.post.findMany()
         return NextResponse.json({data: response, messge: "success" }, {status: 200})
     } catch (error) {
+        console.log(error)
         return NextResponse.json({message: "error"}, {status: 400})
     }
 }
@@ -49,7 +50,7 @@ export async function DELETE(request: Request) {
     }
 
     const { searchParams } = new URL(request.url);
-    const postId: any = searchParams.get('postId')
+    const postId = searchParams.get('postId')
 
     try {
         await prisma.post.delete({

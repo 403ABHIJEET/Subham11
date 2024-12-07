@@ -1,6 +1,6 @@
 'use client'
 import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import React, { useState } from 'react'
+import React from 'react'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -33,7 +33,6 @@ const Page = () => {
                 method: "POST",
                 body: JSON.stringify(data),
             })
-            const result = await response.json()
         } catch (error) {
             console.log(error)
         } finally {
