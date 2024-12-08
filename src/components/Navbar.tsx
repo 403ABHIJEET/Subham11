@@ -3,6 +3,8 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Navbar = () => {
 
@@ -18,9 +20,9 @@ const Navbar = () => {
   return (
     <div className="flex justify-between items-center px-9 h-20 bg-cyan-500">
       <div>
-        <h1 className="text-4xl">MyApp</h1>
+        <h1 className="text-4xl"><Image src="/logo1.png" height={50} width={300} alt="img" /></h1>
       </div>
-      
+
       <div className="">
         {
           initialLoading && status == "loading" ? (
@@ -36,6 +38,12 @@ const Navbar = () => {
                 <Button onClick={() => signOut()} variant="destructive">
                   Logout
                 </Button>
+                <Link href="/profile">
+                  <Avatar>
+                    <AvatarImage src={session.user?.image || ""} />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </Link>
               </div>
             )
           )

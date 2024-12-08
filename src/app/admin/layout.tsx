@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-export default function Layout({children} : {children: React.ReactNode}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
 
     return (
         <div>
@@ -8,12 +9,9 @@ export default function Layout({children} : {children: React.ReactNode}) {
                 <div>
                     <h1 className="text-4xl">Shubam Page</h1>
                 </div>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                     <Link href="/admin" className="flex justify-center">Home</Link>
                     <Link href="/admin/upload" >Upload Courses</Link>
-                    <div className="flex justify-center">
-                        
-                    </div>
                 </div>
             </div>
             {children}

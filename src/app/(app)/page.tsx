@@ -36,9 +36,9 @@ const Page = () => {
     }, [setPosts])
 
     return (
-        <div className="m-10 grid grid-cols-4 gap-4">
+        <div className="">
             <AnimatePresence mode="wait" >
-                <div className="flex gap-4">
+                <div className="m-10 flex gap-4">
                 {
                   posts.map((post, index: number) => {
                         return (
