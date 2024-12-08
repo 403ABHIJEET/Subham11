@@ -38,7 +38,7 @@ const Page = () => {
     return (
         <div className="">
             <AnimatePresence mode="wait" >
-                <div className="m-10 flex gap-4">
+                <div className="flex flex-col sm:flex-row items-center " >
                 {
                   posts.map((post, index: number) => {
                         return (
@@ -46,8 +46,9 @@ const Page = () => {
                                 initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
                                 animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                                 transition={{ duration: 0.2, delay: index * 0.05 }}
+                                className="m-5"
                                 >
-                                <Card className="w-[350px] min-h-[400px]" >
+                                <Card className="w-80" >
                                     <CardHeader>
                                         <CardTitle className="text-center" >{post.name}</CardTitle>
                                     </CardHeader>

@@ -51,17 +51,19 @@ const Page = () => {
     }
 
     return (
-        <div className="m-10 grid grid-cols-4 gap-4">
-            <AnimatePresence mode="wait">
+        <div className="">
+            <AnimatePresence mode="wait" >
+                <div className="flex flex-col sm:flex-row items-center ">
                 {
-                    posts.map((post, index: number) => {
+                  posts.map((post, index: number) => {
                         return (
                             <motion.div key={index}
                                 initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
                                 animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                                 transition={{ duration: 0.2, delay: index * 0.05 }}
-                            >
-                                <Card className="w-[350px] min-h-[400px]" >
+                                className="m-5"
+                                >
+                                <Card className="w-80" >
                                     <CardHeader>
                                         <CardTitle className="text-center" >{post.name}</CardTitle>
                                     </CardHeader>
@@ -79,16 +81,15 @@ const Page = () => {
                                             <Button className="bg-blue-500 hover:bg-blue-700" >
                                                 <Link href={post.url} >Visit</Link>
                                             </Button>
-                                            <Button onClick={() => handleDelete(post.id)} className="bg-red-500 hover:bg-red-700" >
-                                                Delete
-                                            </Button>
+                                            <Button className="bg-red-500 hover:bg-red-700" onClick={() => handleDelete(post.id)} >Delete</Button>
                                         </div>
                                     </CardFooter>
                                 </Card>
                             </motion.div>
                         )
                     })
-                }
+                  }
+                  </div>
             </AnimatePresence>
         </div>
     )
