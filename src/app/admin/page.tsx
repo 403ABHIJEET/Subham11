@@ -46,7 +46,7 @@ const Page = () => {
         })
     }
 
-    if (!token || token.user.email !== "abhijeet8745@gmail.com") {
+    if (!token || (token.user.email !== "abhijeet8745@gmail.com" && token.user.email !== "shrivastavshubham759@gmail.com" )) {
         return <div>Not Authorized</div>;
     }
 

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react';
 import Image from 'next/image'
 import GenerateThumbnail from '@/components/GenerateImage'
+import { useSession } from 'next-auth/react'
 
 const formSchema = z.object({
     courseName: z.string().min(2).max(50),
@@ -18,6 +19,8 @@ const formSchema = z.object({
 })
 
 const Page = () => {
+
+    const { data: token } = useSession()
 
     //const { toast } = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -47,6 +50,10 @@ const Page = () => {
             setIsSubmitting(false)
         }
     };
+
+    if (!token || (token.user.email !== "abhijeet8745@gmail.com" && token.user.email !== "shrivastavshubham759@gmail.com" )) {
+        return <div>Not Authorized</div>;
+    }
 
     return (
         <div className=''>
