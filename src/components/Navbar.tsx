@@ -19,11 +19,16 @@ const Navbar = () => {
   }, [status, session]);
 
   return (
-    <div className={cn(session ? "justify-evenly" : "justify-between", "flex items-center px-9 h-20 bg-cyan-500")}>
+    <div className={cn(session ? "justify-evenly" : "justify-between", "flex items-center h-20 bg-transparent")} >
       <div>
         <h1 className="text-4xl"><Image src="/logo1.png" height={50} width={300} alt="img" /></h1>
       </div>
-      <Link className={cn(session ? "block" : "hidden", "text-white w-full text-center")} href="/dashboard" >Dahsboard</Link>
+      <div className="w-full flex justify-center gap-3">
+        <Link href="/" className={cn(session ? "block" : "hidden", "text-white hover:bg-gray-500 rounded-md p-2")} >Home</Link>
+        <Link className={cn(session ? "block" : "hidden", "text-white hover:bg-gray-500 rounded-md p-2 font-semibold")} href="/dashboard" >
+          Dashboard
+        </Link>
+      </div>
       <div className="">
         {
           initialLoading && status == "loading" ? (

@@ -36,9 +36,10 @@ const Page = () => {
     }, [setPosts])
 
     return (
-        <div className="">
+        <div className="mt-16">
+            <h1 className="font-extrabold text-5xl text-center mb-24">OUR COURSES</h1>
             <AnimatePresence mode="wait" >
-                <div className="flex flex-col sm:flex-row items-center " >
+                <div className="flex flex-col sm:flex-row items-center gap-7" >
                 {
                   posts.map((post, index: number) => {
                         return (
@@ -46,7 +47,7 @@ const Page = () => {
                                 initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
                                 animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                                 transition={{ duration: 0.2, delay: index * 0.05 }}
-                                className="m-5"
+                                className=""
                                 >
                                 <Card className="w-80" >
                                     <CardHeader>
