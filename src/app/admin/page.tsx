@@ -13,6 +13,7 @@ import {
 import Image from "next/image";
 import { Post } from "@prisma/client";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 
 const Page = () => {
 
@@ -60,21 +61,27 @@ const Page = () => {
                                 animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                                 transition={{ duration: 0.2, delay: index * 0.05 }}
                             >
-                                <Card className="w-[350px]" >
+                                <Card className="w-[350px] min-h-[400px]" >
                                     <CardHeader>
                                         <CardTitle className="text-center" >{post.name}</CardTitle>
                                     </CardHeader>
-                                    <CardContent className="flex justify-center items-center">
-                                        <Image src={post.image} width={100} height={100} alt="img" />
+                                    <CardContent className="flex justify-center items-center min-h-[200px]">
+                                        <Link href={post.image} >
+                                            <Image src={post.image} width={200} height={200} alt="img" />
+                                        </Link>
                                     </CardContent>
                                     <CardFooter className="block">
-                                        <p>{post.url}</p>
                                         <CardDescription>
                                             {post.description}
                                         </CardDescription>
                                         <div className="flex justify-evenly py-4">
                                             <Button>Open</Button>
-                                            <Button onClick={() => handleDelete(post.id)} className="bg-red-500 hover:bg-red-700" >Delete</Button>
+                                            <Button className="bg-blue-500 hover:bg-blue-700" >
+                                                <Link href={post.url} >Visit</Link>
+                                            </Button>
+                                            <Button onClick={() => handleDelete(post.id)} className="bg-red-500 hover:bg-red-700" >
+                                                Delete
+                                            </Button>
                                         </div>
                                     </CardFooter>
                                 </Card>

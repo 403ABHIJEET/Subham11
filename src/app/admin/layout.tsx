@@ -6,7 +6,7 @@ export default function Layout({children} : {children: React.ReactNode}) {
         <div>
             <div className="h-20 bg-cyan-500 flex justify-between items-center px-5">
                 <div>
-                    <h1 className="text-4xl">Admin Page</h1>
+                    <h1 className="text-4xl">Shubam Page</h1>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                     <Link href="/admin" className="flex justify-center">Home</Link>
